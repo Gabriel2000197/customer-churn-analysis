@@ -24,8 +24,6 @@ which customers are worth contacting?
 
 ## Notebooks - Key findings
 
-### 01-Initial Exploration
-
 ### 01 — Initial Exploration
 First look at the dataset to understand its structure and quality.
 
@@ -39,3 +37,19 @@ First look at the dataset to understand its structure and quality.
 - `pdays = 999` and `poutcome = nonexistent` describe the same thing 
   from two different angles, most clients had no prior contact with the bank
 - `education` has only 18 "illiterate" cases, not meaningful
+
+### 02 — Data Cleaning
+Cleaned the raw dataset from 41,188 to 41,172 rows.
+
+**Decisions made:**
+
+- **Duplicates:** 12 removed
+- **Duration = 0:** 4 records removed — no contact was made
+- **education:** merged 'illiterate' (18 cases) into 'basic.4y' — too rare to be meaningful
+- **default:** collapsed 3 'yes' into 'no' — statistically irrelevant, kept 'unknown' as separate category
+- **pdays:** dropped column — most of the values were 999 (a placeholder, not a real number -> a problem for the future models). Created binary column `previously_contacted` to preserve the yes/no information
+- **housing & loan:** imputed 990 'unknown' with mode — it's not specified in the dataset documentation that the 'unknown' values are a behavioral signal (no answer), so not a separate category
+- **education unknown:** kept as separate category — 1,730 cases can be meaningful enough and are too large to impute without introducing bias
+- **job & marital unknown:** imputed with mode — small percentage, low risk
+
+**Output:** `data/processed/bank_clean.csv`
