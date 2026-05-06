@@ -22,7 +22,7 @@ which customers are worth contacting?
 
 ---
 
-## Notebooks - Key findings
+## Notebooks
 
 ### 01 — Initial Exploration
 First look at the dataset to understand its structure and quality.
@@ -51,5 +51,31 @@ Cleaned the raw dataset from 41,188 to 41,172 rows.
 - **housing & loan:** imputed 990 'unknown' with mode — it's not specified in the dataset documentation that the 'unknown' values are a behavioral signal (no answer), so not a separate category
 - **education unknown:** kept as separate category — 1,730 cases can be meaningful enough and are too large to impute without introducing bias
 - **job & marital unknown:** imputed with mode — small percentage, low risk
+ 
+**Winsorization:** applying the strategy outlined in the EDA notebook for outliers (`duration` and `campaign` - capping at 99th percentile) to produce the model-ready dataset.
 
-**Output:** `data/processed/bank_clean.csv`
+**Output:** `data/processed_data/bank_clean.csv`, `data/processed_data/bank_model.csv`
+
+### 03 — Exploratory Data Analysis
+Visual and more in depth exploration of the cleaned dataset to uncover patterns and relationships.
+
+**Coverage:**
+- **Numerical and categorical distributions:** histograms for all numerical and categorical variables, outlier identification via boxplots for `duration` and `campaign`
+- **Target analysis:** call duration vs subscription outcome, age distribution by outcome, campaign contacts vs outcome (great visual sign for understanding what can be the optimal number of contacts)
+- **Correlation matrix:** strong multicollinearity confirmed among economic indicators (r > 0.90)
+- **Economic context:** scatter plot revealing two distinct economic clusters (low vs high euribor), boxplot confirming subscribers were predominantly contacted during low-rate periods (one of the strongest pattern in the dataset)
+- **Temporal patterns:** monthly subscription rate trend
+
+**Outlier handling strategy (no real application here):**
+- `age`: no action — distribution is natural, 10 clients over 90 are plausible
+- `duration` and `campaign`: capping at 99th percentile applied in the Data Cleaning notebook to produce the model-ready dataset
+
+
+### 04 — SQL Analysis
+Business intelligence queries on a SQLite database ('bank.db').
+Covers customer profiling, campaign effectiveness, economic context quantification, 
+segment volume and stability analysis, and a risk-opportunity matrix 
+classifying all job segments across conversion rate and volume dimensions.
+This notebook extends and replicates the EDA findings.
+
+**Output:** `notebooks\bank.db` (put in .gitignore)
