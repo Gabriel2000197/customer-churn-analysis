@@ -78,4 +78,22 @@ segment volume and stability analysis, and a risk-opportunity matrix
 classifying all job segments across conversion rate and volume dimensions.
 This notebook extends and replicates the EDA findings.
 
-**Output:** `notebooks\bank.db` (put in .gitignore)
+**Output:** `outputs/database/bank.db` (put in .gitignore)
+
+### 05 — Predictive Modeling
+
+End-to-end model training pipeline to predict term deposit subscription (identify who is worth contacting).
+
+Approach:
+- Three models compared (ROC-AUC): Logistic Regression, Random Forest, XGBoost
+- Hyperparameter tuning via RandomizedSearchCV on the two best performers
+- Threshold optimization (only for selected model after tuning) for a better F1-score and a better recall for class 1 ('yes' - really important in this business context), with a precision constraint of at least 0.35 (avoid an excessive number of false positives).
+
+**Key decisions**:
+- **duration excluded** — only available post-call, not useful for pre-call lead prioritization
+- **Class imbalance** — handled via scale_pos_weight (XGBoost) and class_weight='balanced' (others)
+- **Two threshold optimization strategies compared** — F1 maximization vs Recall maximization
+- **Recall-focused threshold selected** — in a campaign context, missing a potential subscriber is more costly than an unnecessary call
+**XGBoost tuned** — selected as final model (ROC-AUC: ~0.8194), with a **decision threshold (recall-optimizated) of ~0.424**
+
+**Output**: `outputs/models/final_subscription_model.pkl`, `outputs/models/best_threshold.pkl`
