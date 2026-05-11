@@ -42,7 +42,7 @@ previous = 0
 duration = 180
 
 with st.expander("Advanced Settings (optional)"):
-    campaign = st.slider("Number of Contacts This Campaign", 1, 14, 2)
+    campaign = st.slider("Number of Contacts - This Campaign", 1, 14, 2)
     contact = st.selectbox("Contact Type", ['cellular', 'telephone'])
     month = st.selectbox("Month", ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'])
     day_of_week = st.selectbox("Day of Week", ['mon','tue','wed','thu','fri'])
@@ -110,3 +110,5 @@ if st.button('Predict Subscription', type='primary'):
                 st.info('📞 Prioritize calling this customer')
             else:
                 st.info('🔍 Move to a better customer first')
+
+        st.caption("A client is classified as 'yes' if probability exceeds optimized threshold.")
