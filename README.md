@@ -1,14 +1,20 @@
 ## Bank marketing campaign analysis
 
-End-to-end data analysis & ML project using a real Portuguese bank telemarketing dataset — from raw data exploration to predictive modeling to to identify which customers will subscribe to a term deposit.
+End-to-end data analysis & ML project using a real Portuguese bank telemarketing dataset — from raw data exploration to predictive modeling to identify which customers will subscribe to a term deposit.
 
 ---
 
 ## Why this project
 
-Understanding why customers say no is as valuable as knowing who will say yes.
-This project started from a simple question: can we identify, before making the call,
-which customers are worth contacting?
+The starting point was a real business problem: a Portuguese bank ran thousands of telemarketing calls
+to sell term deposits, but only 1 in 9 clients subscribed.
+The question was not just "can we identify, before making the call,
+which customers are worth contacting?", but also "why do they subscribe, when they should be contacted, and how to make the campaign actually efficient?".
+
+This project covers a full analysis workflow: raw data exploration, cleaning, SQL-based business intelligence, viusla EDA, and a predictive model. Every step was driven by a business question.
+
+The result is a set of findings (business report) that a campaign manager could act on tomorrow - and
+a live app that scores any client before the call is made.
 
 ---
 
