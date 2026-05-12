@@ -25,7 +25,11 @@ an 83% accuracy rate on non-subscribers. This represents a strong result given t
 The bank runs outbound telemarketing campaigns to sell term deposits. 
 The core challenge here is efficiency — the campaign contacted over 41,000 clients, 
 but only 11.3% subscribed. The remaining 88.7% were contacted (at a cost)
-with no return. Every unsuccessful contact represents agent time, operational cost, and customer fatigue without generating revenue, improving efficiency therefore becomes more valuable than simply increasing outreach volume.
+with no return.
+
+![Subscribers vs Non-Subscribers](outputs/graphs/target_distribution.png)
+
+Every unsuccessful contact represents agent time, operational cost, and customer fatigue without generating revenue, improving efficiency therefore becomes more valuable than simply increasing outreach volume.
 
 The questions this analysis set out to answer:
 
@@ -98,6 +102,12 @@ interest rates and subscription behavior. When the Euribor rate was low
 When rates were high (above 2%), fewer than 1 in 20 subscribed (4.8%), 
 a fivefold difference.
 
+| Economic Period | Conversion Rate |
+|-------------------|----------|
+| Low-rate euribor3m | 24.5% |
+| High-rate euribor3m | 4.8% |
+Source: '04_sql_analysis.ipynb'
+
 This finding has profound implications for campaign planning. 
 The bank's campaign results are heavily influenced by macroeconomic conditions 
 that are outside its control. However, the timing of high-intensity outreach 
@@ -115,6 +125,8 @@ March, September, October and December showed stronger performance,
 while May, despite being the highest-volume month, showed relatively 
 modest conversion rates. Volume and effectiveness do not always move together.
 
+![Subscription Trend By Month](outputs\graphs\subscription_trend_month.png)
+
 ---
 
 ## 3. Predictive Model
@@ -129,6 +141,7 @@ whether a client is likely to subscribe. Several predictive approaches were eval
 | ROC-AUC | 0.82 |
 | Recall (subscribers) | 71% |
 | Precision (subscribers) | 35% |
+Source: '05_Modeling.ipynb'
 
 The model correctly identifies 71% of actual subscribers before the call is made. 
 The classification threshold was deliberately set lower than standard (0.424 vs 0.5) 
@@ -138,6 +151,8 @@ subscriber outweighs the cost of an unnecessary call. For this reason this strat
 
 
 ### What Drives the Model
+
+![Most Important Variables](outputs\graphs\feature_importance.png)
 
 The five variables with the highest influence on the model's predictions are:
 
@@ -183,7 +198,6 @@ Any client who has not responded positively after 4 calls is unlikely to convert
 Introduce a contact fatigue policy by limiting follow-up attempts to a maximum of 4. Beyond this point, additional outreach generates sharply diminishing returns while increasing operational cost and customer irritation risk.
 This limit frees up agent time and budget for higher-probability leads.
 
-
 ---
 
 ## 5. Limitations
@@ -215,4 +229,4 @@ the campaign workflow
 
 *This report was produced as part of a full end-to-end data analysis project 
 covering data cleaning, exploratory analysis, SQL-based business intelligence, 
-and predictive modeling. All findings are based on: 'Moro,  S., Cortez, P., & Rita, P.et al., (2014).*
+and predictive modeling. All findings are based on: Moro, S., Rita, P., & Cortez, P. (2014). UCI Machine Learning Repository, using bank-additional-full datatset variant.*

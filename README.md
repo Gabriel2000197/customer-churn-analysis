@@ -119,9 +119,23 @@ Features:
 - Real-time prediction with probability score and recommended action
 - Decision threshold set at 0.424 to maximize recall — prioritizing lead capture over precision (threshold calculated in 05_modeling notebook)
 
+Note: to keep interface simpler and ore user-friendly, several variables were grouped
+into an optional advance settings section. If these fields are not manually adjusted
+by the user, I set the application to automatically fills them using representative
+default values -> median (for numeric variables) and mode (fro categorical variables).
+
 Live demo: https://bank-marketing-analysis-gabriel.streamlit.app/
 
 To run locally:
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
+```
+
+---
+
+## Business Report
+
+A detailed business intelligence report that summarize the key findings
+from the full analysis. It translates technical results into actionable
+business insights and recommendations.
