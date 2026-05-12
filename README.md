@@ -11,7 +11,7 @@ to sell term deposits, but only 1 in 9 clients subscribed.
 The question was not just "can we identify, before making the call,
 which customers are worth contacting?", but also "why do they subscribe, when they should be contacted, and how to make the campaign actually efficient?".
 
-This project covers a full analysis workflow: raw data exploration, cleaning, SQL-based business intelligence, viusla EDA, and a predictive model. Every step was driven by a business question.
+This project covers a full analysis workflow: raw data exploration, cleaning, SQL-based business intelligence, viusla EDA, a final business report, and a predictive model. Every step was driven by a business question.
 
 The result is a set of findings (business report) that a campaign manager could act on tomorrow - and
 a live app that scores any client before the call is made.
@@ -19,9 +19,10 @@ a live app that scores any client before the call is made.
 ---
 
 ## Dataset
+Bank Additional Full dataset variant
 
 - **Source:** UCI Machine Learning Repository
-- **Reference:** Moro et al. (2014), Decision Support Systems  
+- **Reference:** Moro, S., Rita, P., & Cortez, P. (2014). Bank Marketing (using bank-additional-full dataset)
 - **Size:** 41,188 rows, 21 columns (20 + 1 target)
 - **Target:** term deposit subscription (yes/no)
 - **Class imbalance:** 88.7% no — 11.3% yes
@@ -105,4 +106,22 @@ Approach:
 **Output**: `outputs/models/final_subscription_model.pkl`, `outputs/models/best_threshold.pkl` `outputs\models\preprocessor.pkl`
 
 ---
-https://bank-marketing-analysis-gabriel.streamlit.app/
+
+### Streamlit App — Live Prediction Tool
+
+An interactive web application that allows users to input client characteristics 
+and receive a real-time subscription probability score before making the call.
+
+Features:
+- Client profile input (age, job, education, marital status)
+- Economic context sliders (Euribor, employment rate, consumer confidence)
+- Optional advanced settings for campaign-specific parameters
+- Real-time prediction with probability score and recommended action
+- Decision threshold set at 0.424 to maximize recall — prioritizing lead capture over precision (threshold calculated in 05_modeling notebook)
+
+Live demo: https://bank-marketing-analysis-gabriel.streamlit.app/
+
+To run locally:
+```bash
+pip install -r requirements.txt
+streamlit run app.py
