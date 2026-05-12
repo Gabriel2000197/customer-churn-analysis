@@ -27,7 +27,7 @@ The core challenge here is efficiency — the campaign contacted over 41,000 cli
 but only 11.3% subscribed. The remaining 88.7% were contacted (at a cost)
 with no return.
 
-![Subscribers vs Non-Subscribers](outputs/graphs/target_distribution.png)
+![Subscribers vs Non-Subscribers](../outputs/graphs/target_distribution.png)
 
 Every unsuccessful contact represents agent time, operational cost, and customer fatigue without generating revenue, improving efficiency therefore becomes more valuable than simply increasing outreach volume.
 
@@ -125,7 +125,7 @@ March, September, October and December showed stronger performance,
 while May, despite being the highest-volume month, showed relatively 
 modest conversion rates. Volume and effectiveness do not always move together.
 
-![Subscription Trend By Month](outputs\graphs\subscription_trend_month.png)
+![Subscription Trend By Month](../outputs/graphs/subscription_trend_month.png)
 
 ---
 
@@ -152,7 +152,7 @@ subscriber outweighs the cost of an unnecessary call. For this reason this strat
 
 ### What Drives the Model
 
-![Most Important Variables](outputs\graphs\feature_importance.png)
+![Most Important Variables](../outputs/graphs/feature_importance.png)
 
 The five variables with the highest influence on the model's predictions are:
 
